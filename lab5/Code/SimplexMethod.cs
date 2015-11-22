@@ -41,8 +41,9 @@ namespace lab5.Code
                 positionDictionary[generalCol] = generalRow;
                 RecalculateElements(generalRow, generalCol);
             } while (true);
-
-            
+            double x1 = matrix[positionDictionary[1]][0];
+            double x2 = matrix[positionDictionary[2]][0];
+            double x3 = matrix[positionDictionary[3]][0];
         }
 
         private void RecalculateElements(int generalRow,int generalCol)
