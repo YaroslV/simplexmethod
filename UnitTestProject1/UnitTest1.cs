@@ -12,5 +12,13 @@ namespace UnitTestProject1
             var test = new SimplexMethod();
             test.DoTheStuff();
         }
+
+        public static bool DoConnection()
+        {
+            
+
+
+            return true;
+        }
     }
 }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
+
 
 namespace lab5.Code
 {
@@ -12,8 +15,7 @@ namespace lab5.Code
         private const int rowNum = 4;
         private double[][] matrix = new double[rowNum][];
         private Dictionary<int, int> positionDictionary = new Dictionary<int, int>(); 
-
-
+        
         public SimplexMethod()
         {
             matrix[0] = new double[] { 1.6, 1.2, 1.4, 0.8 };
@@ -26,7 +28,16 @@ namespace lab5.Code
             positionDictionary.Add(3, -1);
         }
 
-        public void DoTheStuff()
+        public void SetMatrix(double[][] m)
+        {
+            for(int i = 0; i < rowNum; i++)
+                for(int j = 0; j < colNum; j++)
+                {
+                    matrix[i][j] = m[i][j];
+                }
+        }
+
+        public double[] DoTheStuff()
         {
             int generalRow = -1;
             int generalCol = -1;
@@ -44,6 +55,9 @@ namespace lab5.Code
             double x1 = matrix[positionDictionary[1]][0];
             double x2 = matrix[positionDictionary[2]][0];
             double x3 = matrix[positionDictionary[3]][0];
+            
+
+            return new double[] {x1,x2,x3};
         }
 
         private void RecalculateElements(int generalRow,int generalCol)
@@ -130,5 +144,21 @@ namespace lab5.Code
             return curCol;
         }   
        
+    }
+
+    public class ImprovementOfMyDBSkills
+    {
+        public static bool DoConnection()
+        {
+            string conn = "DATA SOURCE=localhost:1521/orcl2;USER ID=SLAVKOUSER";
+            OracleConnection _connection = new OracleConnection(conn);
+            OracleCommand command = _connection.CreateCommand();
+            string commandText = "insert into users (@id,@username,@email,@passwordhash)"
+                + "values ";
+            command.CommandText = commandText;
+
+
+            return true;
+        }
     }
 }

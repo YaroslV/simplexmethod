@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab5"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Laboratory work 5" MinHeight="350" MinWidth="325">
     <Grid>
-        
+        <StackPanel>
+            <TextBlock Text="Умова:" Margin="10"></TextBlock>
+            <DataGrid Name="_grid" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="10">
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="" Width="SizeToCells" IsReadOnly="True" Binding="{Binding RowName}"/>
+                    <DataGridTextColumn Header="P1" IsReadOnly="False" Binding="{Binding P1}" />
+                    <DataGridTextColumn Header="P2" IsReadOnly="False" Binding="{Binding P2}"/>
+                    <DataGridTextColumn Header="P3" IsReadOnly="False" Binding="{Binding P3}"/>
+                    <DataGridTextColumn Header="Норма" IsReadOnly="False" Binding="{Binding Norm}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Line></Line>
+            <TextBlock Text="Вартість одиниці продукту:" Margin="10"></TextBlock>
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding ElementName=prices}" Name="_priceGrid" Margin="10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Вартість для р1" IsReadOnly="False" Binding="{Binding CP1}"/>
+                    <DataGridTextColumn Header="Вартість для р2" IsReadOnly="False" Binding="{Binding CP2}"/>
+                    <DataGridTextColumn Header="Вартість для р1" IsReadOnly="False" Binding="{Binding CP3}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button MaxWidth="80" HorizontalAlignment="Left" Margin="10" Click="Button_Click" >Порахувати</Button>
+            <TextBlock Name="_result" Text="" Margin="20"></TextBlock>
+            
+        </StackPanel>
     </Grid>
 </Window>
